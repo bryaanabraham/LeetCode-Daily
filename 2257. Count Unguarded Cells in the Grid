@@ -7,7 +7,7 @@ Solution:
 - Replace cells with 'Guards' and 'Walls'
 - Iterate over all guards and replace 'F' with 'Gb' (guardable) by passing in all 4 directions
 
-'''python
+```python
 class Solution:
     def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
         # F: Free, G: guard, W: wall, Gb: guardable
@@ -48,4 +48,4 @@ class Solution:
                 if cell == 'F':
                     ans += 1
         return ans
-'''
+```
