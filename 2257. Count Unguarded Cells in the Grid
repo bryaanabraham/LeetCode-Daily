@@ -1,0 +1,51 @@
+You are given two integers m and n representing a 0-indexed m x n grid. You are also given two 2D integer arrays guards and walls where guards[i] = [rowi, coli] and walls[j] = [rowj, colj] represent the positions of the ith guard and jth wall respectively.
+A guard can see every cell in the four cardinal directions (north, east, south, or west) starting from their position unless obstructed by a wall or another guard. A cell is guarded if there is at least one guard that can see it.
+Return the number of unoccupied cells that are not guarded.
+
+Solution: 
+- Create a grid of 'F' (free) cells 
+- Replace cells with 'Guards' and 'Walls'
+- Iterate over all guards and replace 'F' with 'Gb' (guardable) by passing in all 4 directions
+
+'''python
+class Solution:
+    def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
+        # F: Free, G: guard, W: wall, Gb: guardable
+        ans = 0
+        grid = [['F' for _ in range(n)] for _ in range(m)]
+        
+        def solve(i,j):
+            for row in range(i+1,m):
+                if grid[row][j] in ['W', 'G']:
+                    break
+                grid[row][j] = 'Gb'
+            
+            for row in reversed(range(0,i)):
+                if grid[row][j] in ['W', 'G']:
+                    break
+                grid[row][j] = 'Gb'
+
+            for col in reversed(range(0,j)):
+                if grid[i][col] in ['W', 'G']:
+                    break
+                grid[i][col] = 'Gb'
+
+            for col in range(j+1, n):
+                if grid[i][col] in ['W', 'G']:
+                    break
+                grid[i][col] = 'Gb'
+
+        for r, c in guards:
+            grid[r][c] = 'G'
+        for r, c in walls:
+            grid[r][c] = 'W'
+        
+        for guard in guards:
+            solve(guard[0], guard[1])
+
+        for row in grid:
+            for cell in row:
+                if cell == 'F':
+                    ans += 1
+        return ans
+'''
