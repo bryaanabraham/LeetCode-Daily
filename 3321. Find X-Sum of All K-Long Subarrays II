@@ -7,7 +7,6 @@ Note that if an array has less than x distinct elements, its x-sum is the sum of
 Return an integer array answer of length n - k + 1 where answer[i] is the x-sum of the subarray nums[i..i + k - 1].
 
 ```python
-### TLE (Brute Force)
 class Solution:
     def findXSum(self, nums: List[int], k: int, x: int) -> List[int]:
         
