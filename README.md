@@ -1,6 +1,6 @@
 # LeetCode Daily Solutions
 
-This repository contains my solutions to **LeetCode Daily Challenges** from **November 1st, 2025** to the present.
+This repository contains my solutions to **LeetCode Daily Challenges**
 
 Each problem is stored as a Markdown file in the format:
 
